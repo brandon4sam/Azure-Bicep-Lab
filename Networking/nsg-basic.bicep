@@ -2,6 +2,14 @@
 param nsgName string = 'bicep-nsg-demo'
 param location string = 'eastus'
 param nsgRuleName string = 'nsg-demo-rule'
+param allowedSourceIP string = '47.196.90.232/32'
+param destinationPortRange string = '3389'
+param protocol string = 'Tcp'
+param ruleAccess string = 'Allow'
+param direction string = 'Inbound' 
+param priority int = 100
+
+
 
 //Variables
 var environment = 'sandbox'
@@ -23,14 +31,14 @@ resource networkSecurityGroup 'Microsoft.Network/networkSecurityGroups@2019-11-0
         name: nsgRuleName
         properties: {
           description: 'description'
-          protocol: 'Tcp'
+          protocol: protocol
           sourcePortRange: '*'
-          destinationPortRange: '3389'
-          sourceAddressPrefix: '47.196.90.232/32'
+          destinationPortRange: destinationPortRange
+          sourceAddressPrefix: allowedSourceIP
           destinationAddressPrefix: '*'
-          access: 'Allow'
-          priority: 100
-          direction: 'Inbound'
+          access: ruleAccess
+          priority: priority
+          direction: direction
         }
       }
     ]

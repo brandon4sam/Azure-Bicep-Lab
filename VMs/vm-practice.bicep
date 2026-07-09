@@ -1,50 +1,50 @@
-// Parameters 
-param vmName string = 'bicep-vm-demo'
+// Parameters
+param vmName string = 'bicep-vm-demo02'
 param location string = resourceGroup().location
-param adminUsername string = 'azureadmin'
+param adminUsername string = 'OrieAdmin'
 
 @secure()
 param adminPassword string
 
 param vmSize string = 'Standard_D4s_v5'
 param vnetName string = 'biceplab-vnet-demo'
-param subnetName string = 'servers-snet'
+param subnetName string = 'management-snet'
 param publicIpName string = '${vmName}-pip'
 param nicName string = '${vmName}-nic'
 
-// Variables
+//Variables
 var environment = 'sandbox'
-var workload = 'test'
-var owner = 'Brandon Orie'
+var Workload = 'test'
+var Owner = 'brandon orie'
 
-// Existing Virtual Network
-resource existingVnet 'Microsoft.Network/virtualNetworks@2019-11-01' existing = {
-  name: vnetName
+//Existing Virtual Network
+resource existingVnet 'Microsoft.Network/virtualNetworks@2019-12-01' existing = {
+name: vnetName
 }
 
-// Existing Subnet
-resource existingSubnet 'Microsoft.Network/virtualNetworks/subnets@2019-11-01' existing = {
+//Existing Subnet
+resource existingSubnet 'Microsoft.Network/virtualNetworks/subnets@2019-12-01' existing = {
   parent: existingVnet
   name: subnetName
 }
-// Public IP Address
-resource publicIp 'Microsoft.Network/publicIPAddresses@2019-11-01' = {
+//Public IP Address
+resource publicIP 'Microsoft.Network/publicIPAddresses@2019-11-01' = {
   name: publicIpName
   location: location
   sku: {
-    name: 'Standard'
+    name:'Standard'
   }
   properties: {
     publicIPAllocationMethod: 'Static'
   }
-tags:{
-    Environment: environment
-    Workload: workload
-    Owner: owner
+tags: {
+  Environment:environment
+  Workload: Workload
+  Owner: Owner
   }
 }
 //Network Interface
-resource networkInterface 'Microsoft.Network/networkInterfaces@2019-11-01' = {
+resource networkInterface 'Microsoft.Network/networkInterfaces@2020-11-01' = {
   name: nicName
   location: location
   properties: {
@@ -54,7 +54,7 @@ resource networkInterface 'Microsoft.Network/networkInterfaces@2019-11-01' = {
         properties: {
           privateIPAllocationMethod: 'Dynamic'
           publicIPAddress: {
-            id: publicIp.id
+            id:publicIP.id
           }
           subnet: {
             id: existingSubnet.id
@@ -63,15 +63,9 @@ resource networkInterface 'Microsoft.Network/networkInterfaces@2019-11-01' = {
       }
     ]
   }
-  tags:{
-    Environment: environment
-    Workload: workload
-    Owner: owner
-  }
 }
-
-//Windows Virtual Machine
-resource windowsVM 'Microsoft.Compute/virtualMachines@2023-07-01' = {
+// Windows Virtual Machine
+resource windowsVM 'Microsoft.Compute/virtualMachines@2020-12-01' = {
   name: vmName
   location: location
   properties: {
@@ -87,7 +81,7 @@ resource windowsVM 'Microsoft.Compute/virtualMachines@2023-07-01' = {
       imageReference: {
         publisher: 'MicrosoftWindowsServer'
         offer: 'WindowsServer'
-        sku: '2022-datacenter-azure-edition'
+        sku: '2022-DataCenter-azure-edition'
         version: 'latest'
       }
       osDisk: {
@@ -107,10 +101,4 @@ resource windowsVM 'Microsoft.Compute/virtualMachines@2023-07-01' = {
       ]
     }
   }
-  tags:{
-    Environment: environment
-    Workload: workload
-    Owner: owner
-  }
-}
-// Outputs
+} 

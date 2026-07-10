@@ -13,7 +13,7 @@ param nsgRule string = 'allow-rdp-inbound'
 param protocol string = 'Tcp'
 
 @description('Destination Port Range')
-param destinantionPortRange string = '3389'
+param destinationPortRange string = '3389'
 
 // Variables
 

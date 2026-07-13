@@ -1,0 +1,4 @@
+targetScope = 'resourceGroup'
+ 
+
+// Parameters 

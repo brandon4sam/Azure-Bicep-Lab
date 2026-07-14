@@ -43,6 +43,9 @@ param adminPassword string
 @description('Session Host VM Size')
 param vmSize string = 'Standard_D4s_v5'
 
+@description('UTC Exipration time for AVD host pool registration token')
+param registrationTokenExpirationTime string = '2026-07-15T23:59:59Z'
+
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' = {
   name: vnetName
   location: location
@@ -68,7 +71,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2024-05-01' = {
     ]
   }
 }
-resource hostPool 'Microsoft.DesktopVirtualization/hostPools@2025-10-10' = {
+resource hostPool 'Microsoft.DesktopVirtualization/hostPools@2024-04-03' = {
   name: hostPoolName
   location: location
 
@@ -78,6 +81,11 @@ resource hostPool 'Microsoft.DesktopVirtualization/hostPools@2025-10-10' = {
     loadBalancerType: 'BreadthFirst'
     preferredAppGroupType: 'Desktop'
     maxSessionLimit:10
+
+registrationInfo: {
+  expirationTime: registrationTokenExpirationTime
+  registrationTokenOperation: 'Update'
+    }
   }
 }
 resource applicationGroup 'Microsoft.DesktopVirtualization/applicationgroups@2021-07-12' = {
@@ -150,3 +158,18 @@ resource sessionHostVm 'Microsoft.Compute/virtualMachines@2024-03-01' = {
     }
     }
     }
+resource testExtension 'Microsoft.Compute/virtualMachines/extensions@2024-03-01' = {
+  parent:sessionHostVm
+  name:'testExtension'
+  location: location 
+
+  properties: {
+    publisher: 'Microsoft.Compute'
+    type: 'CustomScriptExtension'
+    typeHandlerVersion: '1.10'
+
+    settings: {
+      commandToExecute: 'echo hello'
+    }
+  }
+}

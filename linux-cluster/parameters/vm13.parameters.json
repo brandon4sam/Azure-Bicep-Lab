@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPublicKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC+h7SmG1Q72rDTwySqobdkLvKdeh0H1iKqFJHnAsRUkaRv6urOzsBBW6Fp+z4/npH3Qt8j1HOm6NHGBLHZdnBXA2m/WfQRhtblo/2YVhTFCI9kYAQzKUtoUQb1U/OUklQHFQzsaliDv7f+Sd8qilFmZssDbQwaV0i3IpiHkDV3tMe3jQRYqCijBSQVqs3gAABJTGqjpfK2zUqUCfb/bkQg/Un4ouRMsURMeP4e3dqwe1juJU5TyY3mgeeFyGHQcIOyppKT9xMcyCEGrCDJHQgyF5bQt6/B6s9XxjSLweBXmXenqVMAXQNJwAxY5dRN1H+lNSb8X8LET8nck03K1IWBYergS+bXUwu3rYu3kvoE4JyQCaEtYRmN3UipvHheaBHI+A2y5a97iFQ6bWyjJxxvpQT5JpqsgY5l4E7/MzSP+DzTlKBwqOAO5LsFQcnMWFZm+2NtxHYTrRP5PJg5ca7+3MWWFSmpqj7vi0RxYPuPfiyva8cd6uJXFD/FAnn3ieE="
+    }
+  }
+}

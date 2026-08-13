@@ -1,8 +1,7 @@
 param location string = 'eastus'
 
 param vmNames array = [
-  'securai-vm11'
-  'securai-vm12'
+  'securai-vm07'
 ]
 
 param vmSize string = 'Standard_D32as_v4'

@@ -42,3 +42,5 @@ resource hostPool 'Microsoft.DesktopVirtualization/hostpools@2026-03-01-preview'
     maxSessionLimit: maxSessionLimit
   }
 }
+
+output hostPoolId string = hostPool.id

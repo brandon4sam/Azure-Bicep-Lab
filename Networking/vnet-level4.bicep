@@ -39,10 +39,6 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2025-07-01' = {
     addressSpace: {
       addressPrefixes: addressPrefixes 
     }
-    encryption: {
-      enabled: true 
-      enforcement: 'AllowedUnecrypted'
-    }
     privateEndpointVNetPolicies: 'Disabled'
     subnets: [
       {

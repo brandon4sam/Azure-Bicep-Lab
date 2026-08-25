@@ -26,6 +26,7 @@ resource workSpace 'Microsoft.DesktopVirtualization/workspaces@2024-04-03' = {
   properties: {
     friendlyName: workspaceFriendlyName
     description: workspaceDescription
+    publicNetworkAccess: 'Enabled'
   
     applicationGroupReferences: [
       appGroupId

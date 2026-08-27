@@ -84,3 +84,17 @@ az account list -o table
 
 az account set `
 --subscription "Sandbox"
+
+
+# Upgrade Azure CLI
+az upgrade
+az upgrade --yes
+
+Install-Module -Name PSReadLine -Force
+
+# Add Azure Interactive CLI Module
+az extension add --name interactive
+az interactive
+
+# Create Azure Resource Group
+az group create --name 'rg-avd-bicep2-LAB' -l 'eastus'

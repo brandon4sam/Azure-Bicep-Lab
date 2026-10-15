@@ -180,3 +180,30 @@ az account set `
 
 # Subnet Resource ID Format:
 # /subscriptions/<subid>/resourceGroups/<rg>/providers/Microsoft.Network/virtualNetworks/<vnet>/subnets/<subnet>
+
+
+#Test-NetConnection 
+Test-NetConnection (10.70.1.4) -Port 3389
+
+
+#Turn OFF Windows Firewall
+netsh advfirewall set allprofiles state off
+
+
+#Turn ON Windows Firewall
+netsh advfirewall set allprofiles state on
+
+#View the ICMP/Ping Rule
+Get-NetFirewallRule -Name FPS-ICMP4-ERQ-In*
+
+#Show firewall profiles
+Get-NetFirewallProfile
+
+#Show network profile
+Get-NetConnectionProfile
+
+#Enable the ICMP rule
+Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In
+
+#Disable the ICMP rule
+Disable-NetFirewallRule -Name FPS-ICMP4-ERQ-In
